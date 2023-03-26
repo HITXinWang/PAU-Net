@@ -15,7 +15,7 @@ def main():
 	parser.add_argument('--scale', type=int, default=4, help='scale factor: 2, 4, 8')
 	parser.add_argument('--limage-size', type=tuple, default=[128, 256], help="LR image size, default as [128, 256]")
 	parser.add_argument('--model_path', type=str,
-						default='./output/pth/360sr/ODR_1024_256/rlwanet/4_b8/model/model_iter_300000.pth')
+						default='./')
 	parser.add_argument('--folder_lq', type=str, default='', help='input low-quality test image folder')
 	parser.add_argument('--folder_gt', type=str, default='', help='input ground-truth test image folder')
 	parser.add_argument('--tile', type=int, default=None, help='Tile size')
