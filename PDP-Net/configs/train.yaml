@@ -1,0 +1,7 @@
+MODEL:
+  TYPE: pdp-net
+  NAME: 360sr
+  DROP_PATH_RATE: 0.1
+  NUM_BLOCKS: 9
+  NET:
+    EMBED_DIM: 180
