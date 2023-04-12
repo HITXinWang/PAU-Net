@@ -1,5 +1,5 @@
 MODEL:
-  TYPE: pdp-net
+  TYPE: pau-net
   NAME: 360sr
   DROP_PATH_RATE: 0.1
   NUM_BLOCKS: 9
