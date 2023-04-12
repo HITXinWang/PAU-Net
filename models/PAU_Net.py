@@ -4,10 +4,10 @@ import torch.nn.functional as F
 from math import sqrt
 import math
 from torch.autograd import Variable
-from PDP_Net import LWAConv2D, LWAReverseConv2D
+from PDP_Net import LWAConv2D
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 
-# 上采样module
+# up module
 class Upsample(nn.Sequential):
     """Upsample module.
     Args:
@@ -29,9 +29,9 @@ class Upsample(nn.Sequential):
         super(Upsample, self).__init__(*m)
 
 
-class PDPNet(nn.Module):
+class PAUNet(nn.Module):
 	def __init__(self, embed_dim, patch_size, sr_scale, num_blocks):
-		super(PDPNet, self).__init__()
+		super(PAUNet, self).__init__()
 		self.embed_dim = embed_dim
 		self.patch_size = patch_size
 		self.patch_h = patch_size[0]
@@ -39,10 +39,11 @@ class PDPNet(nn.Module):
 		self.sr_scale = sr_scale
 		self.num_blocks = num_blocks
 
-		# modules
+		# FE module
 		self.lrelu = nn.LeakyReLU(inplace=True)
 		self.input = nn.Conv2d(in_channels=3, out_channels=self.embed_dim, kernel_size=3, stride=1, padding=1, dilation=1, groups=1, bias=True)
 
+		# FPE module
 		self.bn1 = nn.BatchNorm2d(self.embed_dim)
 		self.lrelu1 = nn.LeakyReLU(inplace=True)
 		self.conv1 = LWAConv2D(in_channels=self.embed_dim, out_channels=self.embed_dim//2, kernel_size=3, stride=1, padding=1, dilation=1, groups=1, bias=True, patch_h=self.patch_h, patch_w=self.patch_w)
@@ -52,9 +53,10 @@ class PDPNet(nn.Module):
 		self.conv2 = LWAConv2D(in_channels=self.embed_dim//2, out_channels=self.embed_dim, kernel_size=3, stride=1,
 							   padding=1, dilation=1, groups=1, bias=True, patch_h=self.patch_h, patch_w=self.patch_w)
 
+		#UP module
 		self.upsample = Upsample(self.sr_scale, self.embed_dim, self.patch_size)
 
-		# restore ODIs
+		# PR module
 		self.lrelu_up = nn.LeakyReLU(inplace=True)
 		self.up_enhance1 = nn.Conv2d(in_channels=self.embed_dim, out_channels=self.embed_dim//4, kernel_size=3, stride=1, padding=1,
 							  dilation=1, groups=1, bias=True)
