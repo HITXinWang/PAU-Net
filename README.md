@@ -1,6 +1,6 @@
-# Pixel Distortion-Perceptive Convolution for Omnidirectional Image Super-resolution
+# Position Adaptive Convolution for Omnidirectional Image Super-resolution
 
-Pytorch implementation for "Pixel Distortion-Perceptive Convolution for Omnidirectional Image Super-resolution".
+Pytorch implementation for "Position Adaptive Convolution for Omnidirectional Image Super-resolution".
 
 
 ## Dependencies
