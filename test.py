@@ -100,7 +100,7 @@ def setup(args):
 def get_image_pair(args, path):
 	imageFullname=os.path.basename(path)
 	(imgname, imgext) = os.path.splitext(imageFullname)
-	img_gt = cv2.imread(path, cv2.IMREAD_COLOR).astype(np.float32) / 255.  #[0,1]化
+	img_gt = cv2.imread(path, cv2.IMREAD_COLOR).astype(np.float32) / 255.  #[0,1]
 	img_lq = cv2.imread(f'{args.folder_lq}/{imageFullname}', cv2.IMREAD_COLOR).astype(
         np.float32) / 255.
 
