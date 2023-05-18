@@ -37,6 +37,6 @@ If you find our paper or code useful for your research, please cite it.
 
 ## Contact
 
-If you have any problem, please contact with me via email. I will reply soon.
+If you have any problems, please contact with me via email. I will reply soon.
 
 Email: x.w@my.cityu.edu.hk
