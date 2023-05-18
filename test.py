@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import os
 import torch
 from util.ws_util import getWeightRec
-from models.PDP_Net import PDPNet as net
+from models.PAU_Net import PAUNet as net
 from util import util_calculate_psnr as util
 
 def main():
